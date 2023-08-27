@@ -3,6 +3,8 @@ import time
 from datetime import datetime
 from instagrapi import Client
 
+print('[*] ---------------------------- insta-scheduler start...')
+
 def post_job():
     str_time = datetime.now().strftime('%Y%m%d')
     file_path = "./" + str_time + "/job"
@@ -27,7 +29,7 @@ def post_job():
             media = cl.photo_upload(img_path, msg)
             print('media: ', media.dict())
 
-schedule.every().day.at('21:28:00').do(post_job)
+schedule.every().day.at('07:00:00').do(post_job)
 
 while True:
     schedule.run_pending()
