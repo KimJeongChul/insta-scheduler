@@ -25,9 +25,13 @@ def post_job():
     
             cl = Client()
             cl.login(id, password)
-
-            media = cl.photo_upload(img_path, msg)
-            print('media: ', media.dict())
+            
+            try:
+                media = cl.photo_upload(img_path, msg)
+                print('media: ', media.dict())
+            except:
+                print('media upload failed ! ', id, img_path)
+                continue
 
 schedule.every().day.at('07:00:00').do(post_job)
 
